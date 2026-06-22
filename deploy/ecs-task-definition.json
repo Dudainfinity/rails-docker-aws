@@ -1,0 +1,33 @@
+{
+  "family": "rails-docker-aws",
+  "networkMode": "awsvpc",
+  "requiresCompatibilities": ["FARGATE"],
+  "cpu": "512",
+  "memory": "1024",
+  "executionRoleArn": "arn:aws:iam::ACCOUNT_ID:role/rails-docker-aws-ecs-execution",
+  "containerDefinitions": [
+    {
+      "name": "rails-docker-aws",
+      "image": "PLACEHOLDER_IMAGE",
+      "essential": true,
+      "portMappings": [{ "containerPort": 3000, "protocol": "tcp" }],
+      "environment": [
+        { "name": "RAILS_ENV", "value": "production" },
+        { "name": "RAILS_LOG_TO_STDOUT", "value": "true" },
+        { "name": "RAILS_SERVE_STATIC_FILES", "value": "true" }
+      ],
+      "secrets": [
+        { "name": "DATABASE_URL", "valueFrom": "arn:aws:ssm:REGION:ACCOUNT_ID:parameter/rails-docker-aws/DATABASE_URL" },
+        { "name": "RAILS_MASTER_KEY", "valueFrom": "arn:aws:ssm:REGION:ACCOUNT_ID:parameter/rails-docker-aws/RAILS_MASTER_KEY" }
+      ],
+      "logConfiguration": {
+        "logDriver": "awslogs",
+        "options": {
+          "awslogs-group": "/ecs/rails-docker-aws",
+          "awslogs-region": "us-east-1",
+          "awslogs-stream-prefix": "web"
+        }
+      }
+    }
+  ]
+}
