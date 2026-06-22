@@ -3,7 +3,7 @@ module Api
     class NotesController < ApplicationController
       before_action :set_note, only: %i[show update destroy]
 
-      # GET /api/v1/notes (filter with ?published=true)
+      # GET /api/v1/notes (filtra com ?published=true)
       def index
         notes = Note.order(created_at: :desc)
         notes = notes.published if params[:published] == "true"

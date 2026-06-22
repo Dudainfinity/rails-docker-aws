@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 #
-# Cross-Origin Resource Sharing (CORS). Tighten `origins` in production via CORS_ORIGINS.
+# Compartilhamento de recursos entre origens (CORS). Restrinja `origins` em produção via CORS_ORIGINS.
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do

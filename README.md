@@ -23,15 +23,15 @@
 
 ---
 
-## 🎯 O que demonstra
+## O que demonstra
 
-- 🐳 **Containerização**: imagem **multi-stage** de produção (build enxuto, usuário não-root, jemalloc) e **`docker-compose`** para subir a stack (web + PostgreSQL) localmente.
-- ☁️ **Deploy na AWS**: a app roda em **ECS Fargate** atrás de um **ALB**, com **RDS PostgreSQL** e logs no **CloudWatch**.
-- 🧱 **Infra como código (Terraform)**: todo o ambiente — ECR, ECS, ALB, RDS, IAM, Security Groups — versionado em [`deploy/terraform/`](deploy/terraform) e validado no CI (`terraform validate`).
-- 🔄 **CI/CD**: testes + cobertura, RuboCop, Brakeman, validação do Terraform, build/push da imagem (GHCR) e um **deploy real para ECR + ECS** (via OIDC, ativável por *flag*).
-- ✅ **App testada**: API de notas com **100% de cobertura** (RSpec) e health check `/up` usado pelo ALB.
+- **Containerização**: imagem **multi-stage** de produção (build enxuto, usuário não-root, jemalloc) e **`docker-compose`** para subir a stack (web + PostgreSQL) localmente.
+- **Deploy na AWS**: a app roda em **ECS Fargate** atrás de um **ALB**, com **RDS PostgreSQL** e logs no **CloudWatch**.
+- **Infra como código (Terraform)**: todo o ambiente — ECR, ECS, ALB, RDS, IAM, Security Groups — versionado em [`deploy/terraform/`](deploy/terraform) e validado no CI (`terraform validate`).
+- **CI/CD**: testes + cobertura, RuboCop, Brakeman, validação do Terraform, build/push da imagem (GHCR) e um **deploy real para ECR + ECS** (via OIDC, ativável por *flag*).
+- **App testada**: API de notas com **100% de cobertura** (RSpec) e health check `/up` usado pelo ALB.
 
-## 🏗️ Arquitetura na AWS
+## Arquitetura na AWS
 
 ```
               Internet
@@ -49,7 +49,7 @@
            CloudWatch Logs
 ```
 
-## 🐳 Rodando com Docker (local)
+## Rodando com Docker (local)
 
 ```bash
 docker compose up --build
@@ -57,7 +57,7 @@ docker compose run --rm web bin/rails db:prepare
 # API em http://localhost:3000  (ex.: GET /api/v1/notes)
 ```
 
-## ☁️ Provisionando a AWS com Terraform
+## Provisionando a AWS com Terraform
 
 ```bash
 cd deploy/terraform
@@ -73,11 +73,11 @@ Recursos criados: **ECR**, **ECS Cluster + Service + Task Definition (Fargate)**
 Target Group + Listener**, **RDS PostgreSQL**, **IAM** (execution role), **Security Groups**
 e **CloudWatch Log Group**. Usa o *default VPC* para ser autossuficiente.
 
-> 🔐 **Produção**: `rails_master_key` e `db_password` estão como variáveis sensíveis por
+> **Produção**: `rails_master_key` e `db_password` estão como variáveis sensíveis por
 > simplicidade. Em produção, prefira **SSM Parameter Store / Secrets Manager** (o
 > [`deploy/ecs-task-definition.json`](deploy/ecs-task-definition.json) já referencia `secrets` via SSM).
 
-## 🔄 Pipeline CI/CD
+## Pipeline CI/CD
 
 [`.github/workflows/ci-cd.yml`](.github/workflows/ci-cd.yml) — em push/PR para `main`:
 
@@ -107,7 +107,7 @@ Fluxo do deploy: **build → push para ECR → render da task definition com a n
 docker pull ghcr.io/dudainfinity/rails-docker-aws:latest
 ```
 
-## 🧪 Testes
+## Testes
 
 ```bash
 bundle exec rspec
@@ -119,6 +119,6 @@ Line Coverage:   100.0%
 Branch Coverage: 100.0%
 ```
 
-## 📝 Licença
+## Licença
 
 Distribuído sob a licença MIT. Veja [`LICENSE`](LICENSE).

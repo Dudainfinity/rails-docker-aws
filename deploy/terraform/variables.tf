@@ -1,42 +1,42 @@
 variable "aws_region" {
-  description = "AWS region to deploy into"
+  description = "Região da AWS para o deploy"
   type        = string
   default     = "us-east-1"
 }
 
 variable "app_name" {
-  description = "Name used for all resources"
+  description = "Nome usado em todos os recursos"
   type        = string
   default     = "rails-docker-aws"
 }
 
 variable "container_port" {
-  description = "Port the Rails container listens on"
+  description = "Porta em que o container Rails escuta"
   type        = number
   default     = 3000
 }
 
 variable "desired_count" {
-  description = "Number of Fargate tasks to run"
+  description = "Número de tasks Fargate a rodar"
   type        = number
   default     = 2
 }
 
 variable "image_tag" {
-  description = "Container image tag to deploy"
+  description = "Tag da imagem do container para deploy"
   type        = string
   default     = "latest"
 }
 
 variable "rails_master_key" {
-  description = "Rails credentials master key (use SSM/Secrets Manager in real prod)"
+  description = "Master key das credentials do Rails (use SSM/Secrets Manager em produção real)"
   type        = string
   sensitive   = true
   default     = ""
 }
 
 variable "db_password" {
-  description = "RDS PostgreSQL password (use SSM/Secrets Manager in real prod)"
+  description = "Senha do RDS PostgreSQL (use SSM/Secrets Manager em produção real)"
   type        = string
   sensitive   = true
   default     = "change-me-before-applying"

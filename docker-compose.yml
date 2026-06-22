@@ -1,4 +1,4 @@
-# Local stack: API (web) + PostgreSQL.
+# Stack local: API (web) + PostgreSQL.
 #   docker compose up --build
 #   docker compose run --rm web bin/rails db:prepare
 services:

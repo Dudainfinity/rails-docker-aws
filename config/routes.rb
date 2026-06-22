@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  # Health check — used by the AWS ALB target group and uptime monitors.
+  # Health check — usado pelo target group do ALB da AWS e por monitores de uptime.
   get "up" => "rails/health#show", as: :rails_health_check
 
   namespace :api do

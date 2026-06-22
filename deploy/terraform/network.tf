@@ -1,5 +1,5 @@
-# Use the account's default VPC and its subnets to keep this example self-contained.
-# In a real deployment you'd typically provision a dedicated VPC with private subnets.
+# Usa a VPC default da conta e suas subnets para manter este exemplo autossuficiente.
+# Num deploy real, normalmente você provisiona uma VPC dedicada com subnets privadas.
 data "aws_vpc" "default" {
   default = true
 }
@@ -13,7 +13,7 @@ data "aws_subnets" "default" {
 
 resource "aws_security_group" "alb" {
   name_prefix = "${var.app_name}-alb-"
-  description = "Allow inbound HTTP to the load balancer"
+  description = "Permite HTTP de entrada no load balancer"
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
@@ -34,7 +34,7 @@ resource "aws_security_group" "alb" {
 
 resource "aws_security_group" "service" {
   name_prefix = "${var.app_name}-svc-"
-  description = "Allow traffic from the ALB to the Fargate tasks"
+  description = "Permite tráfego do ALB para as tasks Fargate"
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
@@ -55,7 +55,7 @@ resource "aws_security_group" "service" {
 
 resource "aws_security_group" "db" {
   name_prefix = "${var.app_name}-db-"
-  description = "Allow PostgreSQL from the Fargate tasks"
+  description = "Permite PostgreSQL a partir das tasks Fargate"
   vpc_id      = data.aws_vpc.default.id
 
   ingress {
